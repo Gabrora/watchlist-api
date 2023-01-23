@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using watchlist_api.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<watchlist_apiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("watchlist_apiContext") ?? throw new InvalidOperationException("Connection string 'watchlist_apiContext' not found.")));
 
 // Add services to the container.
 
