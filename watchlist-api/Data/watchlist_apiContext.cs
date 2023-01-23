@@ -26,12 +26,6 @@ namespace watchlist_api.Data
                 .Property(b => b.Rating)
                 .HasPrecision(3, 1);
 
-            modelBuilder.Entity<Content>() 
-                .Property(b => b.ReleaseDate)
-                .HasConversion(
-                v => v.Date,
-                v => new DateTime(v.Year, v.Month, v.Day)
-                );
         }
 
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using watchlist_api.Data;
 
@@ -11,9 +12,10 @@ using watchlist_api.Data;
 namespace watchlist_api.Migrations
 {
     [DbContext(typeof(watchlist_apiContext))]
-    partial class watchlist_apiContextModelSnapshot : ModelSnapshot
+    [Migration("20230123192423_DateTime-fixed")]
+    partial class DateTimefixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
