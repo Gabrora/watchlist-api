@@ -1,4 +1,5 @@
-﻿namespace watchlist_api.Models
+﻿
+namespace watchlist_api.Models
 {
     public class WatchListModel
     {
@@ -6,3 +7,6 @@
         public int ContentId { get; set; }
     }
 }
+
+
+

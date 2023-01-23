@@ -10,4 +10,5 @@ namespace watchlist_api.Models
         public string Name { get; set; }
         public virtual ICollection<WatchList> WatchLists { get; set; }
     }
+
 }
