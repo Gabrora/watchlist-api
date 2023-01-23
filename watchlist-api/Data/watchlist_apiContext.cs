@@ -12,6 +12,7 @@ namespace watchlist_api.Data
         public watchlist_apiContext (DbContextOptions<watchlist_apiContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<WatchList> WatchList { get; set; } = default!;
@@ -32,5 +33,7 @@ namespace watchlist_api.Data
                 v => new DateTime(v.Year, v.Month, v.Day)
                 );
         }
+
+
     }
 }

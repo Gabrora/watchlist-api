@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace watchlist_api.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ContentController : ControllerBase
