@@ -22,7 +22,7 @@ namespace watchlist_api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetWatchlist(int UserId)
+        public async Task<IActionResult> GetWatchlist(int UserId)
         {
 
             if (!_context.User.Any(x => x.Id.Equals(UserId)))
@@ -37,31 +37,47 @@ namespace watchlist_api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostWatchlist(AddWatchList wishlist)
+        public async Task<IActionResult> PostWatchlist(WatchListModel model)
         {
-            WatchList newContent = new WatchList();
 
-            var x = _context.User.Any(x => x.Id.Equals(wishlist.UserId));
-
-            if (_context.WatchList.Where(x => x.UserId.Equals(wishlist.UserId)).Select(x => x.ContentId).Contains(wishlist.ContentId))
-                return Ok("item already in the watchlist");
-
-            else if (!_context.User.Any(x => x.Id.Equals(wishlist.UserId)))
+             if (!_context.User.Any(x => x.Id.Equals(model.UserId)))
                 return NotFound("such user does not exist");
 
-            else if (!_context.Content.Any(x => x.Id.Equals(wishlist.ContentId)))
+            else if (!_context.Content.Any(x => x.Id.Equals(model.ContentId)))
                 return NotFound("such content does not exist");
 
-            else if (!_context.WatchList.Where(x => x.UserId.Equals(wishlist.UserId)).Select(x => x.ContentId).Contains(wishlist.ContentId))
+            var watchlLists = _context.WatchList.Where(x => x.UserId.Equals(model.UserId))
+                              .Select(x => x.ContentId)
+                              .Contains(model.ContentId);
+             if (watchlLists)
+                return Ok("item already in the watchlist");
+
+            else if (!watchlLists)
             {
-                newContent.UserId = wishlist.UserId;
-                newContent.ContentId = wishlist.ContentId;
-                _context.WatchList.Add(newContent);
+                _context.WatchList.Add(new WatchList {UserId = model.UserId,ContentId = model.ContentId });
                 await _context.SaveChangesAsync();
             }
             return Ok("watchlist updated successfully");
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> PatchWatchList(WatchListModel model)
+        {
+            var response = _context.WatchList.FirstOrDefault(x => x.UserId
+                           .Equals(model.UserId) && x.ContentId
+                           .Equals(model.ContentId));
+
+            if (response == null)          
+                return NotFound("user and/or content not found in the watchlist");
+            
+            if (response.hasWatched)          
+                return Ok("Content is already watched");
+            
+            response.hasWatched = true;
+            await _context.SaveChangesAsync();
+            return Ok("watchlist updated successfully");
+        }
+      
 
 
     }

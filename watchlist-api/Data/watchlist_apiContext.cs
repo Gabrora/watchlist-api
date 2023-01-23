@@ -21,11 +21,11 @@ namespace watchlist_api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Content>() //ratings should start from 0.0 and end at 10.0
+            modelBuilder.Entity<Content>() 
                 .Property(b => b.Rating)
                 .HasPrecision(3, 1);
 
-            modelBuilder.Entity<Content>() // realease date only should have Year month and day
+            modelBuilder.Entity<Content>() 
                 .Property(b => b.ReleaseDate)
                 .HasConversion(
                 v => v.Date,
