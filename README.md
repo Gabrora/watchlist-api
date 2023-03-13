@@ -1,7 +1,6 @@
-პროგრამა გაშვებისას დააგენერირებს user და content მონაცემებს ხოლო wishList ცარიელი იქნება გატესტვის მიზნით.(connectionString იქნება ჩასანაცვლებელი)
-არის 4 http მეთოდი:
-- 1 GET /api/Content მეთოდს გადაეცემა ფილმის სახელი ან სახელის ნაწილი და შედეგად აბრუნებს ყველა ფილმს რომელიც შეესაბამება შეყვანილ ინფორმაციას.
-- 2 GET /api/WatchList მეთოდს გადაეცემა UserId, შედეგად აბრუნებს მაგ მომხმარებლის WishList-ს.
-- 3 POST /api/WatchList მეთოდს გადაეცემა UserId და ContentId, შედეგად გადაცემულ User ს WatchList ში დაემატება გადაცემული კონტენტი.
-- 4 PATCH /api/WatchList მეთოდს გადეცემა UserId და ContentId, შედეგად გადაცემული User ის WatchList ში ჩაიწერება რომ კონტენტი ნანახი აქვს.
-არის გაკეთებული ვალიდაციები, რათა სწორად მოხდეს ინფორმაციის შენახვა მონაცემთა ბაზაში.
+this is a small API project to manage user's watchlist
+there are 4 http methods:
+- 1 GET /api/Content  method returns all movies based on the search word.
+- 2 GET /api/WatchList method returns all the user's movies in hes/hers watchlist.
+- 3 POST /api/WatchList method updates user's watchlist. method requires user id and content id.
+- 4 PATCH /api/WatchList method updates content's has watched status.
