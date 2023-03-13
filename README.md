@@ -1,4 +1,4 @@
-this is a small API project to manage user's watchlist
+this is a small API project to manage user's watchlist,
 there are 4 http methods:
 - 1 GET /api/Content  method returns all movies based on the search word.
 - 2 GET /api/WatchList method returns all the user's movies in hes/hers watchlist.
